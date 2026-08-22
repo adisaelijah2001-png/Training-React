@@ -13,7 +13,13 @@ const Home = () => {
     };
 
 useEffect(() => {
-    console.log('use effect ran');
+    fetch('http://localhost:8000/blogs')
+    then(res => {
+        return res.json();
+    })
+    then((data) => {
+        setBlog(data)
+    })
 } []);
 
     return (
