@@ -1,32 +1,30 @@
 import { useState, useEffect } from "react";
+import Bloglist from "./Bloglist";
 
 const Home = () => {
-    const [blog, setBlog] = useState([
-        {title: 'My new website', body: 'lorem ipsum', author: 'Mario', id: 1},
-        {title: 'Welcome party', body: 'lorem ipsum', author: 'Jane', id: 1},
-        {title: 'Web dev top tips', body: 'lorem ipsum', author: 'Mario', id: 1},
+    const [blogs, setBlogs] = useState([
+        { title: 'My new website', body: 'lorem ipsum', author: 'Mario', id: 1 },
+        { title: 'Welcome party', body: 'lorem ipsum', author: 'Jane', id: 2 },
+        { title: 'Web dev top tips', body: 'lorem ipsum', author: 'Mario', id: 3 },
     ]);
-   
+
     const handleDelete = (id) => {
-        const newBlog = blogs.filter(blog => blog.id !==id);
-        setBlog(newBlogs);
+        const newBlogs = blogs.filter((blog) => blog.id !== id);
+        setBlogs(newBlogs);
     };
 
-useEffect(() => {
-    fetch('http://localhost:8000/blogs')
-    then(res => {
-        return res.json();
-    })
-    then((data) => {
-        setBlog(data)
-    })
-} []);
+    useEffect(() => {
+        fetch('http://localhost:8000/blogs')
+            .then((res) => res.json())
+            .then((data) => setBlogs(data))
+            .catch((error) => console.error('Failed to load blogs:', error));
+    }, []);
 
     return (
         <div className="home">
-           <BlogList blogs=(blogs) title='All Blogs' handleDelete={handleDelete} />
-        </div> 
+            <Bloglist blogs={blogs} title='All Blogs' handleDelete={handleDelete} />
+        </div>
     );
-}
- 
+};
+
 export default Home;
