@@ -11,9 +11,9 @@ const useFetch = (url) => {
       })
       .then((data) => {
         setTimeout(() =>{
-        setdata(data);
+        setData(data);
         setIsPending(false);
-        },3000);
+        },1000);
        
       })
       .catch((error) => {
