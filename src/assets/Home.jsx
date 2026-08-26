@@ -2,24 +2,36 @@ import { useState, useEffect } from "react";
 import Bloglist from "./Bloglist";
 
 const Home = () => {
-    const [blogs, setBlogs] = useState([
-        { title: 'My new website', body: 'lorem ipsum', author: 'Mario', id: 1 },
-        { title: 'Welcome party', body: 'lorem ipsum', author: 'Jane', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum', author: 'Mario', id: 3 },
-    ]);
-    
-    useEffect(() => {
-        fetch('http://localhost:8000/blogs')
-            .then((res) => res.json())
-            .then((data) => setBlogs(data))
-            .catch((error) => console.error('Failed to load blogs:', error));
-    }, []);
+  const [blogs, setBlogs] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
-    return (
-        <div className="home">
-            <Bloglist blogs={blogs} title='All Blogs' />
-        </div>
-    );
+  useEffect(() => {
+    fetch("http://localhost:8000/blogs")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setTimeout(() =>{
+        setBlogs(data);
+        setIsPending(false);
+        },3000);
+       
+      })
+      .catch((error) => {
+        console.error("Failed to load blogs:", error);
+        setIsPending(false);
+      });
+  }, []);
+
+  return (
+    <div className="home">
+
+      {isPending && <div>Loading....</div>}
+
+      {blogs && <Bloglist blogs={blogs} title="All Blogs" />}
+
+    </div>
+  );
 };
 
 export default Home;
