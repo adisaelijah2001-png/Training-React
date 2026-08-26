@@ -7,12 +7,7 @@ const Home = () => {
         { title: 'Welcome party', body: 'lorem ipsum', author: 'Jane', id: 2 },
         { title: 'Web dev top tips', body: 'lorem ipsum', author: 'Mario', id: 3 },
     ]);
-
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter((blog) => blog.id !== id);
-        setBlogs(newBlogs);
-    };
-
+    
     useEffect(() => {
         fetch('http://localhost:8000/blogs')
             .then((res) => res.json())
@@ -22,7 +17,7 @@ const Home = () => {
 
     return (
         <div className="home">
-            <Bloglist blogs={blogs} title='All Blogs' handleDelete={handleDelete} />
+            <Bloglist blogs={blogs} title='All Blogs' />
         </div>
     );
 };
