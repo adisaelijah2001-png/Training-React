@@ -1,9 +1,9 @@
 import "./App.css";
 
-import Home from "./assets/Home";
-import About from "./assets/About";
-import Contact from "./assets/Contact";
-import Event from "./assets/Event";
+import Home from "./Home";
+import About from "./About";
+import Contact from "./Contact";
+import Event from "./Event";
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
