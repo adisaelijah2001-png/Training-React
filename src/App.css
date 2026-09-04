@@ -1,3 +1,87 @@
+.app-shell {
+  min-height: 100svh;
+  background: linear-gradient(135deg, #fffdf8 0%, #f8f4ff 100%);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 18px 32px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 4px 18px rgba(52, 35, 73, 0.06);
+}
+
+.navbar-logo {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navbar-links a {
+  position: relative;
+  padding: 6px 0;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar-links a::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  content: "";
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.navbar-links a:hover,
+.navbar-links a:focus-visible {
+  color: var(--accent);
+}
+
+.navbar-links a:hover::after,
+.navbar-links a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.navbar-logo:focus-visible,
+.navbar-links a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+
+  .navbar-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
